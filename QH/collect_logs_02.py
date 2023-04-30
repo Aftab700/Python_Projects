@@ -83,7 +83,7 @@ if __name__ == '__main__':
     folder_path = USERPROFILE + '/' + folder_name
     folder_path = folder_path.replace('\\', '/')
     os.makedirs(os.path.dirname(folder_path + "/yo.txt"), exist_ok=True)
-    print(folder_path)
+    # print(folder_path)
 
     print("\nGive path to Upload Sample.\nExample: C:/Users/John/Downloads/cat.exe")
     while True:
