@@ -77,7 +77,7 @@ if __name__ == '__main__':
             exit(0)
         else:
             print("Invalid input.Please try again...")
-    [print(i) for i in list_of_files_to_copy]
+    # [print(i) for i in list_of_files_to_copy]
     folder_name = str(time.time_ns()) + "/"
     # folder_name = "1682765157686604700/"
     folder_path = USERPROFILE + '/' + folder_name
