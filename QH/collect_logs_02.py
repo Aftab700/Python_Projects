@@ -73,10 +73,10 @@ if __name__ == '__main__':
     list_of_files_to_copy.add(SYSTEMDRIVE + "/Info.qhc")
     while True:
         user_input = input("Enter Input: ")
-        list_of_files_to_copy.add(av_path_base + "/Quarantine")
-        list_of_files_to_copy.add(av_path_base + "/LOGS")
-        list_of_files_to_copy.add(av_path_base + "/REPORT")
-        list_of_files_to_copy.add(av_path_base + "/Arwbackup")       # Not found
+        list_of_files_to_copy.add(av_path_base + "Quarantine")
+        list_of_files_to_copy.add(av_path_base + "LOGS")
+        list_of_files_to_copy.add(av_path_base + "REPORT")
+        list_of_files_to_copy.add(av_path_base + "Arwbackup")       # Not found
         if user_input == '1':
             break
         elif user_input == '2':
