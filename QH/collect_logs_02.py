@@ -3,6 +3,15 @@ import time
 import winreg
 import shutil
 from distutils.dir_util import copy_tree
+import ctypes
+
+
+def check_for_admin():
+    try:
+        is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except Exception:
+        is_admin = os.getuid() == 0
+    return is_admin
 
 
 def copy_folder(src_path, dst_path):
@@ -35,6 +44,11 @@ def create_info_qhc_file(command):
 
 
 if __name__ == '__main__':
+    if check_for_admin():
+        pass
+    else:
+        print("You need to run this as admin.")
+        exit(0)
     # copy_file("D:/Programms/html/1.py", 'D:/Programms/html2/')
     av_path_base = get_av_path()   # C:\Program Files\Quick Heal\Quick Heal Total Security\
     # av_path_base = "C:\Program Files\Quick Heal\Quick Heal Total Security\\"
@@ -105,24 +119,24 @@ if __name__ == '__main__':
     with open(folder_path + "comment_of_user.txt", 'w') as f:
         f.write(comment_s)
     for i in list_of_files_to_copy:
+        i = i.replace('\\', '/')
         try:
             if os.path.isfile(i):
                 copy_file(i, folder_path)
             else:
-                if "System32" in i:
-                    copy_folder(i, folder_path + "/System32")
-                else:
-                    copy_folder(i, folder_path)
+                copy_folder(i, folder_path)
+            print("Collecting: ", i)
         except Exception as e:
             print(e)
     zip_dst = SYSTEMDRIVE + "/" + folder_name
+    print("Creating zip...")
     archived = shutil.make_archive(f"{zip_dst}/data", 'zip', f"{folder_path}")
     if os.path.exists(zip_dst):
-        print(archived)
+        print("Zip file saved at: ", archived)
         shutil.rmtree(folder_path)
     else:
         print("ZIP file not created")
-        print(folder_path)
+        print("Collected files at: ", folder_path)
     pass
     # make password protected zip
     # try:
