@@ -107,6 +107,7 @@ if __name__ == '__main__':
             break
         if os.path.isfile(mal_sample_path) or os.path.isdir(mal_sample_path):
             list_of_files_to_copy.add(mal_sample_path)
+            print("Added:", mal_sample_path)
         else:
             print("Invalid path\ntry again or Enter 'q' to skip")
     comment_s = ""
@@ -125,7 +126,7 @@ if __name__ == '__main__':
                 copy_file(i, folder_path)
             else:
                 copy_folder(i, folder_path)
-            print("Collecting: ", i)
+            print("Collecting:", i)
         except Exception as e:
             print(e)
     zip_dst = SYSTEMDRIVE + "/" + folder_name
