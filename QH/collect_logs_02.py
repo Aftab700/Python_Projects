@@ -69,23 +69,23 @@ if __name__ == '__main__':
     print("2 => Malware issue")
     print("q => exit")
     # print(USERPROFILE + "//home" + "file.txt")  #
-    list_of_files_to_copy = list()
-    list_of_files_to_copy.append(SYSTEMDRIVE + "/Info.qhc")
+    list_of_files_to_copy = set()
+    list_of_files_to_copy.add(SYSTEMDRIVE + "/Info.qhc")
     while True:
         user_input = input("Enter Input: ")
-        list_of_files_to_copy.append(av_path_base + "/Quarantine")
-        list_of_files_to_copy.append(av_path_base + "/LOGS")
-        list_of_files_to_copy.append(av_path_base + "/REPORT")
-        list_of_files_to_copy.append(av_path_base + "/Arwbackup")       # Not found
+        list_of_files_to_copy.add(av_path_base + "/Quarantine")
+        list_of_files_to_copy.add(av_path_base + "/LOGS")
+        list_of_files_to_copy.add(av_path_base + "/REPORT")
+        list_of_files_to_copy.add(av_path_base + "/Arwbackup")       # Not found
         if user_input == '1':
             break
         elif user_input == '2':
-            list_of_files_to_copy.append(windir + "/Tasks")
-            list_of_files_to_copy.append(windir + "/System32/Tasks")
-            list_of_files_to_copy.append(windir + "/Prefetch")
-            list_of_files_to_copy.append(windir + "/System32/winevt")
-            list_of_files_to_copy.append(windir + "/Connection_Log.csv")  # Not found
-            list_of_files_to_copy.append(windir + "/regact.dat")
+            list_of_files_to_copy.add(windir + "/Tasks")
+            list_of_files_to_copy.add(windir + "/System32/Tasks")
+            list_of_files_to_copy.add(windir + "/Prefetch")
+            list_of_files_to_copy.add(windir + "/System32/winevt")
+            list_of_files_to_copy.add(windir + "/Connection_Log.csv")  # Not found
+            list_of_files_to_copy.add(windir + "/regact.dat")
             break
         elif user_input == 'q':
             exit(0)
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         if mal_sample_path == 'q':
             break
         if os.path.isfile(mal_sample_path) or os.path.isdir(mal_sample_path):
-            list_of_files_to_copy.append(mal_sample_path)
+            list_of_files_to_copy.add(mal_sample_path)
         else:
             print("Invalid path\ntry again or Enter 'q' to skip")
     comment_s = ""
