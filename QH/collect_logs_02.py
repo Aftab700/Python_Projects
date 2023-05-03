@@ -49,26 +49,17 @@ if __name__ == '__main__':
     else:
         print("You need to run this as admin.")
         exit(0)
-    # copy_file("D:/Programms/html/1.py", 'D:/Programms/html2/')
+
     av_path_base = get_av_path()   # C:\Program Files\Quick Heal\Quick Heal Total Security\
-    # av_path_base = "C:\Program Files\Quick Heal\Quick Heal Total Security\\"
-    # filename = "D://Programms\\html2///comment5.txt"
-    # os.makedirs(os.path.dirname(filename), exist_ok=True)
-    # with open(filename, 'w') as f:
-    #     f.write("yo")
-    # for key in os.environ:
-    #     print(key, '=>', os.environ[key])
     windir = os.environ["WINDIR"]            # C:\WINDOWS
     USERPROFILE = os.environ["USERPROFILE"]  # C:\Users\AFTAB SAMA
     SYSTEMDRIVE = os.environ["SYSTEMDRIVE"]  # C:
-    # isFile = os.path.isfile("fpath")
     machine_info_exe = ('"' + av_path_base + 'MACHINFO.EXE" sysinfo@quickheal.com1 sysinfo@quickheal.com1 sysinfo@quickheal.com1').replace('\\', '/')
     create_info_qhc_file(machine_info_exe)
-    print("Choose option from following:")
+    print("\nChoose option from following:")
     print("1 => False issue")
     print("2 => Malware issue")
     print("q => exit")
-    # print(USERPROFILE + "//home" + "file.txt")  #
     list_of_files_to_copy = set()
     list_of_files_to_copy.add(SYSTEMDRIVE + "/Info.qhc")
     while True:
@@ -91,13 +82,11 @@ if __name__ == '__main__':
             exit(0)
         else:
             print("Invalid input.Please try again...")
-    # [print(i) for i in list_of_files_to_copy]
+
     folder_name = str(time.time_ns()) + "/"
-    # folder_name = "1682765157686604700/"
     folder_path = USERPROFILE + '/' + folder_name
     folder_path = folder_path.replace('\\', '/')
     os.makedirs(os.path.dirname(folder_path + "/yo.txt"), exist_ok=True)
-    # print(folder_path)
 
     print("\nGive path to Upload Sample.\nExample: C:/Users/John/Downloads/cat.exe")
     while True:
@@ -111,7 +100,7 @@ if __name__ == '__main__':
         else:
             print("Invalid path\ntry again or Enter 'q' to skip")
     comment_s = ""
-    print("\n\nStart entering your comment below and press 'q' to stop")
+    print("\nStart entering your comment below and Enter 'q' to stop")
     while True:
         x = input("=>")
         if x == 'q':
@@ -119,6 +108,7 @@ if __name__ == '__main__':
         comment_s += x + "\n"
     with open(folder_path + "comment_of_user.txt", 'w') as f:
         f.write(comment_s)
+        print("Comment saved in comment_of_user.txt\n")
     for i in list_of_files_to_copy:
         i = i.replace('\\', '/')
         try:
@@ -130,7 +120,7 @@ if __name__ == '__main__':
         except Exception as e:
             print(e)
     zip_dst = SYSTEMDRIVE + "/" + folder_name
-    print("Creating zip...")
+    print("\nCreating zip...")
     archived = shutil.make_archive(f"{zip_dst}/data", 'zip', f"{folder_path}")
     if os.path.exists(zip_dst):
         print("Zip file saved at: ", archived)
@@ -144,4 +134,4 @@ if __name__ == '__main__':
     #     pyminizip.compress(inpt, None, oupt, password, com_lvl)
     # except Exception as e:
     #     print(e)
-print('======================================\nDone')
+print("\nExecution completed Exiting...")
