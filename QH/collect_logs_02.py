@@ -129,9 +129,5 @@ if __name__ == '__main__':
         print("ZIP file not created")
         print("Collected files at: ", folder_path)
     pass
-    # make password protected zip
-    # try:
-    #     pyminizip.compress(inpt, None, oupt, password, com_lvl)
-    # except Exception as e:
-    #     print(e)
+    
 print("\nExecution completed Exiting...")
