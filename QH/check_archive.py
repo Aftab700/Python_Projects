@@ -13,13 +13,14 @@ def is_compressed_file(filename, target_folder):
 
 
 def main():
+  # move the compressed files from 'sample' to 'archive' 
   target_folder = 'archive'
   if not os.path.exists(target_folder):
     os.mkdir(target_folder)
-  for filename in os.listdir('.'):
+  for filename in os.listdir('./sample'):
     if filename.endswith('.py') or filename == target_folder:
       continue
-    is_compressed_file(filename, target_folder)
+    is_compressed_file("./sample/"+filename, target_folder)
 
 if __name__ == '__main__':
   main()
