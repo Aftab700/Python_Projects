@@ -1,15 +1,28 @@
 import os
 import re
+import zipfile
 
 def is_compressed_file(filename, target_folder):
   with open(filename, 'rb') as f:
     header = f.read(4)
   if header.startswith(b'PK') :
-    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+".zip")))
+    print(filename)
+    is_apk = False
+    with zipfile.ZipFile(filename, 'r') as zf:
+      if 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
+        is_apk = True
+    if is_apk:
+      if not os.path.exists("apk"):
+        os.mkdir(target_folder)
+      os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
+    else:
+      os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
   elif header.startswith(b'ustar'):
-    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+".tar")))
+    print(filename)
+    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_tar")))
   elif header.startswith(b'Rar!\x1A\x07\x00'):
-    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+".rar")))
+    print(filename)
+    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_rar")))
 
 
 def main():
@@ -25,4 +38,4 @@ def main():
 if __name__ == '__main__':
   main()
 
-print("Done...")
+print("\nDone...\n")
