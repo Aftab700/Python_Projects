@@ -4,7 +4,7 @@ import zipfile
 
 def is_compressed_file(filename, target_folder):
   with open(filename, 'rb') as f:
-    header = f.read(4)
+    header = f.read(8)
   if header.startswith(b'PK') :
     print(filename)
     is_apk = False
