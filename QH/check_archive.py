@@ -15,7 +15,7 @@ def is_compressed_file(filename, target_folder):
         is_apk = True
     if is_apk:
       if not os.path.exists("apk"):
-        os.mkdir(target_folder)
+        os.mkdir("apk")
       os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
     else:
       os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
