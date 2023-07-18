@@ -1,6 +1,7 @@
 import os
 import re
 import zipfile
+import tarfile
 
 def is_compressed_file(filename, target_folder):
   with open(filename, 'rb') as f:
@@ -19,7 +20,7 @@ def is_compressed_file(filename, target_folder):
       os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
     else:
       os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
-  elif header.startswith(b'ustar'):
+  elif header.startswith(b'ustar') or tarfile.is_tarfile(filename):
     print(filename)
     os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_tar")))
   elif header.startswith(b'Rar!\x1A\x07\x00'):
