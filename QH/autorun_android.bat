@@ -5,5 +5,5 @@ cmd /c "Android_scanner.bat"
 set /p input= "Enter Path: "
 @REM echo Input is: "%input%"
 cd C:\Tools\Android\Scanner\
-qhscane.exe "%input%"
+qhscan.exe "%input%"
 pause
