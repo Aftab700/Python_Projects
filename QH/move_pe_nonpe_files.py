@@ -16,8 +16,8 @@ for row in range(2, sheet.max_row + 1):
     if cell_value != None:
         NON_PE_values.append(cell_value)
 
-print(PE_values)
-print(NON_PE_values)
+print("PE_values:", len(PE_values))
+print("NON_PE_values:", len(NON_PE_values))
 
 for i in PE_values:
     try:
