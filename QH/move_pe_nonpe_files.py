@@ -1,4 +1,5 @@
 import openpyxl
+import os
 
 wb = openpyxl.load_workbook('scan_report.xls')
 sheet = wb['undetected']
