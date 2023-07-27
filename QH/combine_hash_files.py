@@ -1,6 +1,5 @@
 import os
 
-
 def main():
   if not os.path.exists('all.txt'):
     with open('all.txt', 'w') as f:
@@ -18,6 +17,7 @@ def main():
       a.write(line + '\n')
 
 if __name__ == '__main__':
+  # It will combine all the unique hashes from 'FileHash-MD5.txt', 'FileHash-SHA1.txt', 'FileHash-SHA256.txt' to `all.txt`
   main()
 
 print("Done...")
