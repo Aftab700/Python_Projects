@@ -32,6 +32,9 @@ def is_compressed_file(filename, target_folder):
     elif header.startswith(b'7z\xbc\xaf\x27\x1c'):
         print(filename, ": 7z")
         os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_7z")))
+    elif header.startswith(b'!<arch>'):
+        print(filename, ": arch")
+        os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_arch")))
 
 
 def main():
