@@ -48,6 +48,9 @@ def main():
         is_compressed_file("./sample/"+filename, target_folder)
 
 if __name__ == '__main__':
+    # place all files in "sample" directory
+    # run the script in parent directory of 'sample'
+    # it will move all the apk and compressed files to seprate folder
     main()
 
 print("\nDone...\n")
