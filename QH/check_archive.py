@@ -4,41 +4,47 @@ import zipfile
 import tarfile
 
 def is_compressed_file(filename, target_folder):
-  with open(filename, 'rb') as f:
-    header = f.read(8)
-  if header.startswith(b'PK') :
-    print(filename)
-    is_apk = False
-    with zipfile.ZipFile(filename, 'r') as zf:
-      if "[Content_Types].xml" in zf.namelist():
-        return False
-      elif 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
-        is_apk = True
-    if is_apk:
-      if not os.path.exists("apk"):
-        os.mkdir("apk")
-      os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
-    else:
-      os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
-  elif header.startswith(b'ustar') or tarfile.is_tarfile(filename):
-    print(filename)
-    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_tar")))
-  elif header.startswith(b'Rar!\x1A\x07\x00'):
-    print(filename)
-    os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_rar")))
+    with open(filename, 'rb') as f:
+        header = f.read(8)
+    if header.startswith(b'PK') :
+        # print(filename)
+        is_apk = False
+        with zipfile.ZipFile(filename, 'r') as zf:
+            if "[Content_Types].xml" in zf.namelist():
+                print(filename, ": Doc file")
+                return False
+            elif 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
+                is_apk = True
+        if is_apk:
+            if not os.path.exists("apk"):
+                os.mkdir("apk")
+            os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
+            print(filename, ": apk")
+        else:
+            os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
+            print(filename, ": zip")
+    elif header.startswith(b'ustar') or tarfile.is_tarfile(filename):
+        os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_tar")))
+        print(filename, ": tar")
+    elif header.startswith(b'Rar!\x1A\x07\x00') or header.startswith(b'Rar!\x1A\x07\x01'):
+        print(filename, ": rar")
+        os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_rar")))
+    elif header.startswith(b'7z\xbc\xaf\x27\x1c'):
+        print(filename, ": 7z")
+        os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_7z")))
 
 
 def main():
-  # move the compressed files from 'sample' to 'archive' 
-  target_folder = 'archive'
-  if not os.path.exists(target_folder):
-    os.mkdir(target_folder)
-  for filename in os.listdir('./sample'):
-    if filename.endswith('.py') or filename == target_folder:
-      continue
-    is_compressed_file("./sample/"+filename, target_folder)
+    # move the compressed files from 'sample' to 'archive' 
+    target_folder = 'archive'
+    if not os.path.exists(target_folder):
+        os.mkdir(target_folder)
+    for filename in os.listdir('./sample'):
+        if filename.endswith('.py') or filename == target_folder:
+            continue
+        is_compressed_file("./sample/"+filename, target_folder)
 
 if __name__ == '__main__':
-  main()
+    main()
 
 print("\nDone...\n")
