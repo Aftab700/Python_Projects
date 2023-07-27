@@ -9,12 +9,19 @@ def is_compressed_file(filename, target_folder):
     if header.startswith(b'PK') :
         # print(filename)
         is_apk = False
-        with zipfile.ZipFile(filename, 'r') as zf:
-            if "[Content_Types].xml" in zf.namelist():
-                print(filename, ": Doc file")
-                return False
-            elif 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
-                is_apk = True
+        try:
+            with zipfile.ZipFile(filename, 'r') as zf:
+                if "[Content_Types].xml" in zf.namelist():
+                    print(filename, ": Doc file")
+                    return False
+                elif 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
+                    is_apk = True
+            pass
+        except Exception as e:
+            # print(e)
+            print(filename, ": Bad Zip")
+            return False
+            pass
         if is_apk:
             if not os.path.exists("apk"):
                 os.mkdir("apk")
