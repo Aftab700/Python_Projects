@@ -45,9 +45,47 @@ def main():
             a.write(line + '\n')
         pass
 
+
+def split_file(file_name, limit):
+    file_list = []
+    current_file = None
+    lines_read = 0
+
+    with open(file_name, 'r') as f:
+        current_file_name = file_name[:-4] + '-' + str(len(file_list)+1) + '.txt'
+        current_file = open(current_file_name, 'w')
+        file_list.append(current_file_name)
+        lines_read = 0
+        for line in f:
+            if lines_read == limit:
+                if current_file:
+                    current_file.close()
+                    # print(current_file_name)
+                current_file_name = file_name[:-4] + '-' + str(len(file_list)+1) + '.txt'
+                current_file = open(current_file_name, 'w')
+                file_list.append(current_file_name)
+                lines_read = 0
+            current_file.write(line)
+            lines_read += 1
+
+    if current_file:
+        current_file.close()
+        # print(current_file_name)
+
+    return file_list
+
+
 if __name__ == '__main__':
-    main()
     # it will create all.txt of combine hashes in all subdirectories
     # create all.txt of all subdirectories
+    # It will also divide files based on 'limit' value which is number of max lines in file
+    main()
+    file_name = 'all.txt'
+    limit = 9998
+    file_list = split_file(file_name, limit)
+    print('The split files are:')
+    for file_name in file_list:
+        print(file_name)
 
-print("Done...")
+
+print("\n\nDone...")
