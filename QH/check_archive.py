@@ -30,7 +30,7 @@ def is_compressed_file(filename, target_folder):
         else:
             os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
             print(filename, ": zip")
-    elif header.startswith(b'ustar') or tarfile.is_tarfile(filename):
+    elif tarfile.is_tarfile(filename):
         os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_tar")))
         print(filename, ": tar")
     elif header.startswith(b'Rar!\x1A\x07\x00') or header.startswith(b'Rar!\x1A\x07\x01'):
