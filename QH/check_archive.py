@@ -2,6 +2,7 @@ import os
 import re
 import zipfile
 import tarfile
+import shutil
 
 def is_compressed_file(filename, target_folder):
     with open(filename, 'rb') as f:
@@ -25,7 +26,8 @@ def is_compressed_file(filename, target_folder):
         if is_apk:
             if not os.path.exists("apk"):
                 os.mkdir("apk")
-            os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
+            shutil.move(filename, os.path.join("./apk", os.path.basename(filename)))
+            # os.rename(filename, os.path.join("./apk", os.path.basename(filename)))
             print(filename, ": apk")
         else:
             os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_zip")))
