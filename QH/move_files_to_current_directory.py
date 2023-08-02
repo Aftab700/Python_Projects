@@ -32,7 +32,11 @@ def rename_to_md5(path):
     for file in os.listdir(path):
         md5 = hashlib.md5(open(os.path.join(path, file), "rb").read()).hexdigest()
         new_name = os.path.join(path, md5)
-        shutil.move(os.path.join(path, file), new_name)
+        try:
+            os.rename(os.path.join(path, file), new_name)
+        except WindowsError as e:
+            os.remove(os.path.join(path, file))
+        # shutil.move(os.path.join(path, file), new_name)
         print(md5, ":", file)
 
 
