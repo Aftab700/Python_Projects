@@ -1,6 +1,7 @@
 import os
 import shutil
 import hashlib
+import stat
 
 
 def move_files_to_current_directory():
@@ -30,12 +31,17 @@ def delete_folders(directory):
 
 def rename_to_md5(path):
     for file in os.listdir(path):
-        md5 = hashlib.md5(open(os.path.join(path, file), "rb").read()).hexdigest()
+        with open(os.path.join(path, file), "rb") as md5_file:
+            md5 = hashlib.md5(md5_file.read()).hexdigest()
         new_name = os.path.join(path, md5)
         try:
             os.rename(os.path.join(path, file), new_name)
-        except WindowsError as e:
+        except FileExistsError as e:
             os.remove(os.path.join(path, file))
+        except PermissionError as e:
+            os.chmod(os.path.join(path, file), stat.S_IWRITE)
+            os.remove(os.path.join(path, file))
+            # print(e)
         # shutil.move(os.path.join(path, file), new_name)
         print(md5, ":", file)
 
