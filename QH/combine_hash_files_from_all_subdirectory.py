@@ -16,6 +16,8 @@ def create_all_txt(dir_path):
     with open(f'{dir_path}/all.txt', 'w') as a:
         for line in lines_set:
             a.write(line + '\n')
+            pass
+        pass
     pass
 
 def main():
@@ -44,6 +46,7 @@ def main():
         for line in lines_set:
             a.write(line + '\n')
         pass
+    print("\nFile of combined hash created: all.txt")
 
 
 def split_file(file_name, limit):
@@ -52,7 +55,7 @@ def split_file(file_name, limit):
     lines_read = 0
 
     with open(file_name, 'r') as f:
-        current_file_name = file_name[:-4] + '-' + str(len(file_list)+1) + '.txt'
+        current_file_name = file_name[:-4] + '_part-' + str(len(file_list)+1) + '.txt'
         current_file = open(current_file_name, 'w')
         file_list.append(current_file_name)
         lines_read = 0
@@ -61,7 +64,7 @@ def split_file(file_name, limit):
                 if current_file:
                     current_file.close()
                     # print(current_file_name)
-                current_file_name = file_name[:-4] + '-' + str(len(file_list)+1) + '.txt'
+                current_file_name = file_name[:-4] + '_part-' + str(len(file_list)+1) + '.txt'
                 current_file = open(current_file_name, 'w')
                 file_list.append(current_file_name)
                 lines_read = 0
@@ -83,9 +86,9 @@ if __name__ == '__main__':
     file_name = 'all.txt'
     limit = 9998
     file_list = split_file(file_name, limit)
-    print('The split files are:')
+    print('\nThe split files are:\n')
     for file_name in file_list:
         print(file_name)
 
 
-print("\n\nDone...")
+print("\n\nDone...\n")
