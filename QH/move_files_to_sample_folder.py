@@ -14,11 +14,8 @@ def move_files_to_PE_NONPE_directory():
             if src == dst or src.endswith(".txt") or src.endswith(".py") or src.endswith(".csv"):
                 continue
             if os.path.exists(dst):
-                base, ext = os.path.splitext(file)
-                i = 1
-                while os.path.exists(dst):
-                    dst = os.path.join('.', f'{base}_{i}{ext}')
-                    i += 1
+                os.remove(src)
+                continue
             shutil.move(src, dst)
             print(src)
 
