@@ -11,7 +11,7 @@ def move_files_to_PE_NONPE_directory():
         for file in files:
             src = os.path.join(root, file)
             dst = os.path.join('.sample/', file)
-            if src == dst or src.endswith(".txt") or src.endswith(".py"):
+            if src == dst or src.endswith(".txt") or src.endswith(".py") or src.endswith(".csv"):
                 continue
             if os.path.exists(dst):
                 base, ext = os.path.splitext(file)
