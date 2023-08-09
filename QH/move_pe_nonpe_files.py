@@ -19,7 +19,11 @@ def move_PE_NONPE_files():
 
     print("PE_values:", len(PE_values))
     print("NON_PE_values:", len(NON_PE_values))
-
+    if not os.path.exists("PE"):
+        os.mkdir("PE")
+    if not os.path.exists("NON_PE"):
+        os.mkdir("NON_PE")
+    
     for i in PE_values:
         try:
             os.rename(f"./sample/{i}", f"./PE/{i}")
