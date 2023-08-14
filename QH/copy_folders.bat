@@ -11,4 +11,5 @@ for /f "delims=" %%i in ('type input.txt') do (
   xcopy "!line!" "New Folder\!a!\"   /E /H /C /I /S /q
 )
 
+pause
 
