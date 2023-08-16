@@ -44,6 +44,9 @@ def is_compressed_file(filename, target_folder):
     elif header.startswith(b'!<arch>'):
         print(filename, ": arch")
         os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_arch")))
+    elif header.startswith(b'\x1f\x8b\x08') or header.startswith(b'\x1f\x8b\x07'):
+        print(filename, ": Gzip")
+        os.rename(filename, os.path.join(target_folder, os.path.basename(filename+"_G_zip")))
 
 
 def main():
