@@ -13,8 +13,9 @@ def is_compressed_file(filename, target_folder):
         try:
             with zipfile.ZipFile(filename, 'r') as zf:
                 if "[Content_Types].xml" in zf.namelist():
-                    print(filename, ": Doc file")
-                    return False
+                    if not ("manifest.json" in zf.namelist()):
+                        print(filename, ": Doc file")
+                        return False
                 elif 'AndroidManifest.xml' in zf.namelist() and 'classes.dex' in zf.namelist():
                     is_apk = True
             pass
