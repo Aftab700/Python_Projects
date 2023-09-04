@@ -64,9 +64,13 @@
 
 </br>
 
-## moving the undetected PE & NON-PE to separate folders
+## moving the undetected PE & NON-PE to separate folders to upload on AMCS
 
+- if performed previous step you will have PE files in first column & NON-PE files in second column under sheet named 'undetected'
+- if any error in the results modify it accordingly
+- run the [move_pe_nonpe_files.py](move_pe_nonpe_files.py) file.
+- It will move all the files starting from second row of `A` column to `PE` folder and from `B` column to `NON_PE` folder under sheet named 'undetected'.
 
-
+_you can use [scan_report.xlsx](scan_report.xlsx) as template._
 
 
