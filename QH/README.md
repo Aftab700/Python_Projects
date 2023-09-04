@@ -55,5 +55,18 @@
 
 </br>
 
-## 
+## finding undetected PE & NON-PE
+
+- put the scanner results in `scan_report.xlsx` file under `scanner-sample` sheet name. you can change this accordingly as per need.
+- run the [find_undetected.py](find_undetected.py) file (while running this file the Excel file should be close)
+- it will create one column `ND` for No Detection to filter out the results.
+- in the sheet named `undetected` it will write the undetected PE in `A` column and NON-PE in `B` column from second row.
+
+</br>
+
+## moving the undetected PE & NON-PE to separate folders
+
+
+
+
 
