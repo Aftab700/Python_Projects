@@ -96,15 +96,5 @@ Run the ```Main_GUI.py``` file:
 
 ---
 
-## [YouTube Link:](https://youtu.be/LwGD5K5S9Fg)
-
----
-* https://youtu.be/LwGD5K5S9Fg
-
----
-
-
-https://user-images.githubusercontent.com/79740895/152666898-ad35d67b-cf38-4f6e-a088-0b798cc939a8.mp4
-
----
+[YouTube Link:](https://youtu.be/LwGD5K5S9Fg)
 
