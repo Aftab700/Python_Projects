@@ -5,8 +5,3 @@
 
 
 
-
-
-
-
-![](https://aftab700.pythonanywhere.com/api/github/Python_Project)
