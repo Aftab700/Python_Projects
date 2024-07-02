@@ -97,5 +97,3 @@ Run the ```Main_GUI.py``` file:
 ---
 
 [YouTube Link:](https://youtu.be/LwGD5K5S9Fg)
-
-![](https://aftab700.pythonanywhere.com/api/github/Python_Projects/Web_Enumeration)
