@@ -72,6 +72,3 @@
 - It will move all the files starting from second row of `A` column to `PE` folder and from `B` column to `NON_PE` folder under sheet named 'undetected'.
 
 _you can use [scan_report.xlsx](scan_report.xlsx) as template._
-
-
-![](https://aftab700.pythonanywhere.com/api/github/Python_Projects/QH)
